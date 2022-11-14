@@ -1,0 +1,537 @@
+/* ==UserStyle==
+@name           Jupyter Notebook - Default
+@namespace      arv-anshul
+@version        3.0
+@description    A new userstyle for "Jupyter Notebook" in any theme of jupyterthemes package.
+@author         Anshul Raj Verma
+@license				MIT
+
+/* code font-family *\/
+@advanced dropdown code-font-family "Code Font" {
+	operator "Operator Mono Lig*" <<<EOT Operator Mono Lig EOT;
+	cascadia "Cascadia Code" <<<EOT 'Cascadia Code' EOT;
+	rec-casual "Recursive Casual" <<<EOT 'Rec mono casual' EOT;
+	syne "Syne Mono" <<<EOT 'Syne Mono' EOT;
+	default "# Defualt #" <<<EOT unset EOT;
+	custom "# Custom #" <<<EOT /*[[custom-code-font]]*\/ EOT;
+	pt "PT Mono" <<<EOT 'pt mono' EOT;
+	fira "Fira Code" <<<EOT 'Fira Code' EOT;
+	m-plus-1 "M PLUS 1 Code" <<<EOT 'M PLUS 1 Code' EOT;
+	nova "Nova Mono" <<<EOT 'Nova Mono' EOT;
+	courier "Courier New" <<<EOT 'Courier New' EOT;
+	ubuntu "Ubuntu Mono" <<<EOT 'Ubuntu Mono' EOT;
+}
+
+@advanced text custom-code-font "Custom Code Font [If Enabled]" "Hubballi"
+
+@advanced range code-font-size "Code Font Size" [20, 16, 35, 1, "px"]
+
+@advanced dropdown lig "Code Font Ligrature" {
+	disable "Disable*" <<<EOT /*[[code-font-family]]*\/ EOT;
+	enable "Enable" <<<EOT 'Fira Code' EOT;
+}
+
+@advanced dropdown code-var-weight "Variable Font Weight" {
+	bold "bold*" <<<EOT bold EOT;
+	normal "normal" <<<EOT normal EOT;
+}
+
+@advanced dropdown code-var-style "Variable Font Style" {
+	bold "italic*" <<<EOT italic EOT;
+	normal "normal" <<<EOT normal EOT;
+}
+
+@advanced range spacing "Code Letter-Spacing [If Needed]" [0, -2, 2, 0.2, "px"]
+
+/* df table font-family *\/
+@advanced dropdown sans-font "Output & DataFrame Font" {
+	code "Code Font*" <<<EOT /*[[code-font-family]]*\/ EOT;
+	default "# Defualt #" <<<EOT unset EOT;
+	custom "# Custom #" <<<EOT /*[[custom-sans-font]]*\/ EOT;
+	gill "Gill Sans" <<<EOT 'Gill Sans' EOT;
+	syne "Syne Mono" <<<EOT 'Syne Mono' EOT;
+	ubuntu-sans "Ubuntu Mono" <<<EOT 'Ubuntu Mono' EOT;
+}
+
+@advanced text custom-sans-font "Custom Output & DataFrame Font [If Enabled]" "Hubballi"
+
+@advanced color str-color "Python String Color" #00A000
+
+/* markdown color variables *\/
+@advanced color h1-md-color "h1 Markdown Color" #F44336
+@advanced color h34-md-color "h3 & h4 Markdown Color" #03A9F4
+@advanced color h5-md-color "h5 Markdown Color" #AE81FF
+
+==/UserStyle== */
+@-moz-document url-prefix("http://localhost:8888/notebooks/"),
+url-prefix("http://localhost:8888/")
+{
+  @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1+Code:wght@400;600&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Syne+Mono&display=swap");
+
+  /* 
+	@description :-
+	#  A new userstyle for "Jupyter Notebook" in monokai theme which is install by terminal :-
+	
+	1. "pip3 install jupyterthemes"
+	2. "jt -t monokai -fs 100 -tfs 16 -fs 16 -ofs 16 -dfs 16 -cellw 85% -T -f firacode -nf exosans -nfs 16 -N".
+*/
+  /*  variables  */
+  :root {
+    --table-border: #0006;
+    --png-bg: #eee;
+    --md-color: #ef5c00;
+    --green: #a6e22e;
+  }
+
+  body > #header #header-container {
+    display: none;
+  }
+
+  #notification_notebook span {
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+  div.cell.code_cell .input_prompt {
+    height: 100%;
+  }
+
+  div.cell.code_cell.selected .input,
+  div.cell.text_cell.rendered.selected .prompt {
+    border-left: 5px solid !important;
+  }
+
+  .edit_mode div.cell.selected::before {
+    filter: saturate(10);
+    border-radius: 3px 0 0 3px;
+  }
+
+  div.CodeMirror-lines,
+  div.cell.text_cell .CodeMirror-lines {
+    padding: 8px !important;
+    margin: 0;
+    border-radius: 0 12px 12px 0;
+  }
+
+  div.CodeMirror-sizer {
+    margin-bottom: 0;
+  }
+
+  /*   code text   */
+  .CodeMirror pre.CodeMirror-line {
+    font-family:
+			/*[[code-font-family]]*/ !important;
+    font-size:
+			/*[[code-font-size]]*/ !important;
+  }
+
+  .cm-s-ipython span.cm-operator {
+    font-family:
+			/*[[lig]]*/ ;
+  }
+
+  .cm-s-ipython span.cm-builtin,
+  .cm-s-ipython span.cm-keyword,
+  .cm-s-ipython span.cm-comment,
+  .cm-s-ipython span.cm-variable,
+  .cm-s-ipython span.cm-operator {
+    font-weight:
+			/*[[code-var-weight]]*/ !important;
+    letter-spacing:
+			/*[[spacing]]*/ ;
+  }
+
+  .cm-s-ipython span.cm-builtin,
+  .cm-s-ipython span.cm-keyword,
+  .cm-s-ipython span.cm-comment {
+    font-style:
+			/*[[code-var-style]]*/ ;
+  }
+
+  .cm-s-ipython span.cm-property {
+    font-weight: normal;
+    color: #007bff;
+    /* 		color: #ffab00; */
+  }
+
+  .cm-s-ipython span.cm-string {
+    color:
+			/*[[str-color]]*/ ;
+    font-style: italic;
+  }
+
+  .timing_area {
+    filter: brightness(0.8) hue-rotate(50deg);
+    color:
+			/*[[str-color]]*/ ;
+    font-weight: bolder;
+    border-top: 0.1px dotted #cfcfcf;
+  }
+
+  /*   input prompt */
+  div.prompt.input_prompt {
+    font-family:
+			/*[[code-font-family]]*/ !important;
+    font-size: small !important;
+    filter: brightness(0.95);
+  }
+
+  .cm-s-ipython.CodeMirror {
+    filter: contrast(1.05);
+  }
+
+  div#maintoolbar {
+    position: sticky;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #notebook-container {
+    padding: 0;
+  }
+
+  /* tooltip dropdown */
+  .smalltooltip {
+    height: 250px;
+  }
+
+  div#tooltip.ipython_tooltip {
+    width: 60%;
+    max-width: none;
+  }
+
+  #tooltip.ipython_tooltip pre {
+    font-family:
+			/*[[code-font-family]]*/ !important;
+    font-size: calc(/*[[code-font-size]]*/ - 5%);
+  }
+
+  div.tooltiptext.bigtooltip {
+    max-width: none;
+  }
+
+  /*   output */
+  div.output_subarea {
+    padding: 5px !important;
+  }
+
+  div.output_area pre {
+    font-family:
+			/*[[sans-font]]*/ !important;
+    font-size:
+			/*[[code-font-size]]*/ !important;
+  }
+
+  /* javascript output */
+  .output_subarea.output_javascript.rendered_html {
+    display: none;
+  }
+
+  /* ml model output */
+  div.sk-container div.sk-dashed-wrapped {
+    padding: 0.4em !important;
+    padding-top: 0 !important;
+    border-radius: 8px;
+    border: 2px solid !important;
+  }
+
+  div.sk-toggleable__content pre {
+    color: black !important;
+    max-width: none;
+  }
+
+  div.rendered_html pre {
+    border: none;
+    white-space: pre;
+  }
+
+  div.sk-top-container {
+    background: none !important;
+  }
+
+  /*   unrendered code output */
+  div.cell.text_cell.unrendered .prompt {
+    border-right: 3px solid var(--purple);
+  }
+
+  div.cell.text_cell.unrendered.selected:before {
+    border: none !important;
+  }
+
+  /* 	jupyter_contrlib_extension */
+  /*   skip-traceback-summary */
+  .skip-traceback-summary {
+    color: #f00 !important;
+  }
+
+  .skip-traceback-summary:hover {
+    color: #f00a !important;
+  }
+
+  /* 	completetion hiterland */
+  .completions select {
+    font-family:
+			/*[[code-font-family]]*/ !important;
+  }
+
+  /*   png graph output  */
+  div .output_subarea.output_png img {
+    /* 		transition: all 0.35s ease-in-out; */
+    background: var(--png-bg);
+  }
+
+  /*   markdown */
+  div.text_cell,
+  div.text_cell_render {
+    background: transparent;
+  }
+
+  div.cell.text_cell.rendered .prompt {
+    background: transparent;
+    border: none;
+  }
+
+  div.text_cell_render p,
+  div.text_cell_render ol,
+  div.text_cell_render ul {
+    font-size: 20px;
+    color: var(--md-color);
+    letter-spacing: 0.6px;
+  }
+
+  div.text_cell_render h1 {
+    color:
+			/*[[h1-md-color]]*/ !important;
+  }
+
+  div.text_cell_render h3,
+  div.text_cell_render h4 {
+    color:
+			/*[[h34-md-color]]*/ !important;
+  }
+
+  div.text_cell_render h5 {
+    color:
+			/*[[h5-md-color]]*/ !important;
+  }
+
+  div.text_cell_render h6 {
+    color: var(--green) !important;
+  }
+
+  div.inner_cell div.input_area[aria-label="Edit Markup Text here"] div,
+  div.input_area {
+    padding-right: 0;
+  }
+
+  /* dataframe table */
+  .dataframe thead th {
+    text-align: left;
+    border: 1px solid var(--table-border) !important;
+    font-size: calc(/*[[code-font-size]]*/ - 25%) !important;
+    font-family:
+			/*[[sans-font]]*/ !important;
+  }
+
+  .rendered_html tbody tr:nth-child(2n + 1) {
+    border: 1px solid var(--table-border);
+  }
+
+  .rendered_html tbody tr:nth-child(2n) {
+    border: 1px solid var(--table-border);
+  }
+
+  .rendered_html tbody tr:hover {
+    border: 1px solid var(--table-border) !important;
+  }
+
+  .rendered_html tbody td,
+  .dataframe tbody tr th {
+    border: 1px solid var(--table-border) !important;
+    font-size:
+			/*[[code-font-size]]*/ !important;
+    font-family:
+			/*[[sans-font]]*/ !important;
+  }
+}
+
+@-moz-document url-prefix("http://localhost:8888/tree")
+{
+  /*  variables  */
+  :root {
+    --width: 68%;
+    --border: 2px solid #444;
+    --border-clr: #f92672;
+    --magenta: #f92672;
+    --red: #d71717;
+    --purple: #ae81ff;
+    --transform-transition: all 200ms ease-in-out;
+    --bg: inherit;
+    --green: inherit;
+    --bg-hover: inherit;
+  }
+
+  * {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+  }
+
+  body > #header #header-container {
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  div#ipython-main-app.container,
+  #header-container {
+    width: var(--width) !important;
+  }
+
+  #shutdown,
+  #logout {
+    color: #fff;
+    border-radius: 3px !important;
+    padding: 1px 10px 3px 10px;
+    font-family:
+			/*[[sans-font]]*/ !important;
+    font-weight: bold;
+    background: var(--red) !important;
+    border: none;
+  }
+
+  span#login_widget > .button:hover,
+  span#login_widget > .button:active,
+  #logout:hover,
+  #shutdown:hover,
+  #logout:active,
+  #shutdown:active,
+  span#login_widget > .button:focus,
+  #logout:focus,
+  #shutdown:focus {
+    border: none;
+    color: #fff !important;
+    background: #f00 !important;
+  }
+
+  /* nav-bar */
+  #tabs {
+    border-bottom: 0.1px solid;
+  }
+
+  #tabs li {
+    margin-bottom: 0;
+    filter: saturate(2);
+  }
+
+  #tab_content {
+    padding-top: 8px;
+  }
+
+  div#notebook_list_header {
+    margin-bottom: 20px;
+    border-bottom: 0.01px solid;
+  }
+
+  .dynamic-buttons {
+    width: initial;
+  }
+
+  #sort_buttons {
+    padding: 4px 0;
+    margin: 0px;
+    line-height: 0px;
+    height: inherit;
+    margin-right: 20px;
+  }
+
+  .btn-xs {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .btn-xs:hover,
+  .btn-xs:active,
+  .btn-xs:focus,
+  .btn-xs:active:focus {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* file list   */
+  div.list_item.row {
+    border-radius: 8px;
+    border: 1px dotted !important;
+    margin-top: 10px;
+    line-height: normal;
+    transform: scale(1);
+    transition: var(--transform-transition);
+    filter: saturate(2);
+  }
+
+  div.panel-default {
+    background: none;
+  }
+
+  div.list_item.row:hover {
+    filter: saturate(5);
+    transform: scale(1.03);
+  }
+
+  div.list_item.row > div {
+    padding: 5px;
+  }
+
+  .list_item > div input {
+    margin: 10px 20px;
+  }
+
+  .list_item div > .item_icon {
+    transition: var(--transform-transition);
+  }
+
+  .list_item div:hover > .item_icon {
+    font-size: 25px;
+  }
+
+  .list_item > div .item_link {
+    width: 50%;
+    line-height: 2em;
+  }
+
+  i.item_icon.file_icon,
+  i.running_notebook_icon {
+    filter: hue-rotate(150deg) saturate(5);
+  }
+
+  .item_buttons .running-indicator {
+    margin-right: 20px;
+    animation: running_btn 2s linear 1s infinite;
+  }
+
+  @keyframes running_btn {
+    0% {
+      filter: opacity(1);
+    }
+
+    50% {
+      filter: opacity(0.3);
+    }
+
+    100% {
+      filter: opacity(1);
+    }
+  }
+
+  .file_size {
+    margin-right: 20px;
+    width: 90px;
+  }
+
+  div.pull-right {
+    line-height: 2em;
+  }
+}
